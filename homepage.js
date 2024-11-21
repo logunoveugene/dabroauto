@@ -1,5 +1,7 @@
 import EmblaCarousel from "embla-carousel";
 
+import VenoBox from "venobox";
+import "venobox/dist/venobox.min.css";
 // Схема работы
 (function () {
   document.querySelectorAll(".steps__item").forEach((header) => {
@@ -149,8 +151,69 @@ import EmblaCarousel from "embla-carousel";
   const options = { loop: false, slidesToScroll: slidesToScroll };
   const emblaApi = EmblaCarousel(emblaNode, options);
 
-  const prevButton = document.querySelector(".embla__button--prev");
-  const nextButton = document.querySelector(".embla__button--next");
+  const prevButton = document.querySelector(".team-slider .embla__button--prev");
+  const nextButton = document.querySelector(".team-slider .embla__button--next");
+
+  const setButtonStates = () => {
+    if (emblaApi.canScrollPrev()) {
+      prevButton.classList.remove("embla__button--disabled");
+    } else {
+      prevButton.classList.add("embla__button--disabled");
+    }
+
+    if (emblaApi.canScrollNext()) {
+      nextButton.classList.remove("embla__button--disabled");
+    } else {
+      nextButton.classList.add("embla__button--disabled");
+    }
+  };
+
+  prevButton.addEventListener("click", emblaApi.scrollPrev);
+  nextButton.addEventListener("click", emblaApi.scrollNext);
+
+  emblaApi.on("select", setButtonStates);
+  emblaApi.on("init", setButtonStates); // Инициализация состояния стрелок
+})();
+
+(function () {
+  document.querySelectorAll(".promo__cta, .cost__cta").forEach((cta) => {
+    cta.addEventListener("click", function (event) {
+      event.preventDefault(); // Предотвращаем стандартное поведение
+      const target = document.querySelector(".contacts");
+      if (target) {
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    });
+  });
+})();
+
+
+// видео
+(function () {
+  new VenoBox({
+    selector: ".video-preview",
+  });
+})();
+
+
+
+
+// Карусель видео
+(function () {
+  var screenWidth = window.innerWidth;
+  var slidesToScroll;
+  if (screenWidth > 1200) {
+    slidesToScroll = 4;
+  } else {
+    slidesToScroll = "auto";
+  }
+
+  const emblaNode = document.querySelector(".new-videos__slider");
+  const options = { loop: false, slidesToScroll: slidesToScroll };
+  const emblaApi = EmblaCarousel(emblaNode, options);
+
+  const prevButton = document.querySelector(".new-videos__slider .embla__button--prev");
+  const nextButton = document.querySelector(".new-videos__slider .embla__button--next");
 
   const setButtonStates = () => {
     if (emblaApi.canScrollPrev()) {

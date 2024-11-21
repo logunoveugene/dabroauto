@@ -12,8 +12,8 @@
     "vite": "^5.2.0"
   },
   "dependencies": {
-
     "embla-carousel": "^8.3.0",
-    "sass": "^1.78.0"
+    "sass": "^1.78.0",
+    "venobox": "^2.1.8"
   }
 }

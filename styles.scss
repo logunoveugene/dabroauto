@@ -434,7 +434,7 @@ a {
   }
 
   &__image {
-    width: 45px;
+    width: auto;
     height: 30px;
     object-fit: cover;
     @media (max-width: 990px) {
@@ -1010,7 +1010,7 @@ a {
       transform: translateY(-50%);
     }
     &--disabled {
-      // display: none;
+      display: none;
     }
   }
 }
@@ -1215,7 +1215,7 @@ a {
 .new-videos {
   display: flex;
   flex-direction: column;
-  gap: 40px;
+ 
   align-items: flex-start;
   &__heading {
     display: flex;
@@ -1231,10 +1231,7 @@ a {
     display: flex;
 
     gap: 16px;
-    @media (max-width: 990px) {
-      overflow: scroll;
-      width: 100%;
-    }
+ 
   }
 
   &__item {
@@ -1242,8 +1239,23 @@ a {
     flex-direction: column;
     gap: 18px;
     flex: 1;
-    max-width: calc(25% - 16px); /* Ensure 4 items per row, with gap */
+    width: calc(25% - 16px); /* Ensure 4 items per row, with gap */
     box-sizing: border-box;
+    text-decoration: none;
+    position: relative;
+
+    &::after {
+      content: "";
+      background: url(/assets/images/video-preview/ico-play.png) no-repeat center;
+      width: 30px;
+      height: 30px;
+      display: block;
+      position: absolute;
+      top: 75px;
+      left: 50%;
+      transform: translate(-50%);
+      background-size: contain;
+    }
     @media (max-width: 990px) {
       min-width: 280px;
     }
@@ -1457,6 +1469,11 @@ a {
     display: flex;
     gap: 16px;
     margin-bottom: 32px;
+
+    @media (max-width: 990px) {
+      flex-direction: column;
+     
+    }
   }
   &__link {
     color: #fff;

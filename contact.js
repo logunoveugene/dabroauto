@@ -1,8 +1,5 @@
 var screenWidth = window.innerWidth;
-var contacts = `  `;
-
-document.querySelector("#contact").innerHTML = contacts;
-
+ 
 function printYaMap() {
   ymaps.ready(init);
 
